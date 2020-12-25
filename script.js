@@ -1,8 +1,22 @@
 createGridDivs()
 draw()
-const clearBtn = document.querySelector('#clear-btn')
-clearBtn.addEventListener('click', clearGrid)
 
+const clearBtn = document.querySelector('#clear-btn')
+const blackBtn = document.querySelector('#black-btn')
+const rainbowBtn = document.querySelector('#rainbow-btn')
+const eraseBtn = document.querySelector('#erase-btn')
+
+let colorMode
+
+setBtns()
+
+// Attaches event listeners to buttons with appropriate callback functions
+function setBtns () {
+    blackBtn.addEventListener('click', black)
+    rainbowBtn.addEventListener('click', rainbow)
+    eraseBtn.addEventListener('click', erase)
+    clearBtn.addEventListener('click', clearGrid)
+}
 
 /* Creates and places a div into each of the
    256 cells in the 16x16 square grid */
@@ -26,7 +40,32 @@ function draw() {
 
 // Determines the color to use for drawing. 
 function color(e) {
-    e.target.setAttribute("style","background-color:black")
+    if (colorMode == 'black' || colorMode == 'none') {
+        e.target.setAttribute("style","background-color:" + colorMode)
+    }
+    else if (colorMode == 'rainbow') {
+        // Pick random color
+        let colors = ['violet','indigo','blue','green','yellow','orange',
+                             'red']
+        let randomColor = colors[Math.floor(Math.random() * colors.length)]; 
+        e.target.setAttribute("style","background-color: " + randomColor)
+    }
+}
+
+// Define the black color mode
+function black() {
+    colorMode = "black"    
+}
+
+function erase() {
+    colorMode = "none"    
+}
+
+function greyScale() {
+}
+
+function rainbow() {
+    colorMode = "rainbow"
 }
 
 // Clears all drawing from the grid.
