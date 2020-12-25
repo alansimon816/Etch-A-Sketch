@@ -44,15 +44,17 @@ function color(e) {
         e.target.setAttribute("style","background-color:" + colorMode)
     }
     else if (colorMode == 'rainbow') {
-        // Pick random color
-        let colors = ['violet','indigo','blue','green','yellow','orange',
-                             'red']
-        let randomColor = colors[Math.floor(Math.random() * colors.length)]; 
-        e.target.setAttribute("style","background-color: " + randomColor)
+        e.target.setAttribute("style","background-color: " + getRainbowColor())
     }
 }
 
-// Define the black color mode
+// Returns a random rainbow color as a string.
+function getRainbowColor () {
+    let colors = ['violet','indigo','blue','green','yellow','orange',
+                             'red']
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+
 function black() {
     colorMode = "black"    
 }
@@ -62,6 +64,7 @@ function erase() {
 }
 
 function greyScale() {
+    colorMode = "greyScale"
 }
 
 function rainbow() {
