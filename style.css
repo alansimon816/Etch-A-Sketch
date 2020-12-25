@@ -4,10 +4,11 @@
     margin: 0;
 }
 
-.grid-container {
+.flex-box {
     height: 100vh;
     width:100vw;
     display: flex;
+    flex-direction:column;
     justify-content: center;
     align-items: center;
 }
@@ -15,10 +16,11 @@
 .grid {
     color: red;
     height: 50%;
-    width: 50%;
     display: grid;
     grid-template: repeat(16, auto) / repeat(16, auto);
 }
 
-
+.grid, .color-modes, .bottom-buttons {
+    width: 50%
+}
 
