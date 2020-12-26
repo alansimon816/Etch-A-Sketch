@@ -1,6 +1,3 @@
-createGridDivs()
-draw()
-
 const clearBtn = document.querySelector('#clear-btn')
 const blackBtn = document.querySelector('#black-btn')
 const grayScaleBtn = document.querySelector('#grayscale-btn')
@@ -8,9 +5,12 @@ const rainbowBtn = document.querySelector('#rainbow-btn')
 const eraseBtn = document.querySelector('#erase-btn')
 const hexInput = document.querySelector('#hex')
 const colorInput = document.querySelector('#color-picker')
+const rangeInput = document.querySelector('#myRange')
 
 let colorMode
 
+createGridDivs()
+draw()
 setBtns()
 
 // Attaches event listeners to buttons with appropriate callback functions
@@ -22,19 +22,44 @@ function setBtns () {
     hexInput.addEventListener('change', hex)
     colorInput.addEventListener('click', picker)
     clearBtn.addEventListener('click', clearGrid)
+    rangeInput.addEventListener('change', adjustGridSize)
+}
+
+// Adjusts the dimensions of the grid based on the value of range slider.
+function adjustGridSize() {
+    destroyGrid()
+    let v = rangeInput.value
+    grid.style.gridTemplate = `repeat(${v}, auto) / repeat(${v}, auto)`
+    createGridDivs()
+    draw()
 }
 
 /* Creates and places a div into each of the
-   256 cells in the 16x16 square grid */
+   cells in the square grid */
 function createGridDivs() {
     grid = document.querySelector('.grid')
+    let gridSize = rangeInput.value * rangeInput.value
+    console.log(`Dimension of grid: ${rangeInput.value}`)
+    console.log(`# Cells in grid: ${gridSize}`)
 
-    for (i = 0; i < 256; i++) {
+    for (i = 0; i < gridSize; i++) {
         div = document.createElement('div')
-        // counter needed for grayscale mode
-        // div.setAttribute('data-count', 0)
         grid.appendChild(div);
     }
+}
+
+// Clears all drawing from the grid.
+function clearGrid() {
+    divs = document.querySelectorAll(".grid > div")
+    divs.forEach(div => {
+        div.removeAttribute("style")
+        div.removeAttribute("data-count")
+    })
+}
+
+// Destroys the existing grid.
+function destroyGrid() {
+    grid.innerHTML = ''
 }
 
 /* Adds an event listener for mouse hover event to each of the divs in the
@@ -49,30 +74,28 @@ function draw() {
 // Colors in a grid cell according to the specified colorMode. 
 function color(e) {
     element = e.target
-
-    if (colorMode == 'black' || colorMode == 'none') {
-        element.setAttribute("style","background-color:" + colorMode)
-    }
-    else if (colorMode == 'rainbow') {
-        element.setAttribute("style","background-color: " + getRainbowColor())
-    }
-    else if (colorMode == 'grayScale') {
+    let color = "black"
+    
+    if (colorMode == 'grayScale') {
         let count = +element.getAttribute("data-count")
         shadeIn(element, count)
+        return
+    }
+    else if (colorMode == 'black' || colorMode == 'none') {
+        color = colorMode
+    }
+    else if (colorMode == 'rainbow') {
+        color = getRainbowColor()
     }
     else if (colorMode == 'picker') {
-        let pickedColor = colorInput.value 
-        hexInput.value = pickedColor
-        element.setAttribute("style","background-color:" + pickedColor)
+        color = colorInput.value 
+        hexInput.value = color
     }
     else if (colorMode == 'hex') {
-        let hexColor = hexInput.value
-        colorInput.value = hexColor
-        element.setAttribute("style","background-color:" + hexColor)
+        color = hexInput.value
+        colorInput.value = color
     }
-    else {
-        element.setAttribute("style","background-color:black")
-    }
+    element.setAttribute("style","background-color:" + color)
 }
 
 
@@ -136,15 +159,3 @@ function picker() {
 function hex() {
     colorMode = "hex"
 }
-
-// Clears all drawing from the grid.
-function clearGrid() {
-    divs = document.querySelectorAll(".grid > div")
-    divs.forEach(div => {
-        div.removeAttribute("style")
-        div.removeAttribute("data-count")
-    })
-}
-
-
-

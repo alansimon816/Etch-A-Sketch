@@ -20,7 +20,7 @@
                 <button id="rainbow-btn">Rainbow</button>
                 <button id="erase-btn">Eraser</button>
                 <div id="color-picker-container">
-                    <input type="text" id="hex">
+                    <input type="text" value="Enter hex color code" id="hex">
                     <input type="color" id="color-picker">
                 </div>
             </div>
@@ -31,8 +31,15 @@
 
             <div class="bottom-buttons">
                 <button id="clear-btn">Clear</button>
-                <input type="range" min="1" max="100" value="50" class="slider"
-                id="myRange">
+                <div id="range-container">
+                    <div id="label-container">
+                        <label for="myRange" id="min">1</label>
+                        <label for="myRange">Select pen size</label>
+                        <label for="myRange" id="max">100</label>
+                    </div>
+                    <input type="range" min="1" max="100" value="50"
+                    class="slider" id="myRange">
+                </div>
             </div>
 
         </div>
@@ -42,6 +49,8 @@
     </body>
 </html>
 
-<!--Add slider for pixel size
-    Make grid a responsive square
+<!--
+    Add label to slider
+    Make grayscale more gradient
+    Add animations
        -->
