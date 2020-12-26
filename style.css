@@ -13,12 +13,27 @@
     align-items: center;
 }
 
-.color-modes {
+.color-modes, .bottom-buttons {
     display: flex;
     justify-content: space-between;
 }
 
+.color-modes {
+    padding-bottom: 1%;
+}
+
+#color-picker-container {
+    display: flex;
+    align-items: center;
+}
+
+.bottom-buttons {
+    padding-top: 1%;
+}
+
 .grid {
+    border-style:solid;
+    border-color: black;
     height: 50%;
     display: grid;
     grid-template: repeat(16, auto) / repeat(16, auto);
@@ -27,4 +42,3 @@
 .grid, .color-modes, .bottom-buttons {
     width: 50%
 }
-
