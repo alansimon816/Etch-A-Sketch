@@ -70,7 +70,9 @@ function color(e) {
         colorInput.value = hexColor
         element.setAttribute("style","background-color:" + hexColor)
     }
-       
+    else {
+        element.setAttribute("style","background-color:black")
+    }
 }
 
 

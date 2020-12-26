@@ -6,19 +6,21 @@
 
 #h1-container {
     height: 15%;
-    width: 50%;
+    width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 h1 {
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
+    color: white;
     margin: 30px;
     font-size: 60px;
 }
 
 body {
-    background-color: gray;
+    background-color: slategray;
 }
 
 .flex-box {
@@ -33,6 +35,18 @@ body {
 .color-modes, .bottom-buttons {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    color: white;
+    background: darkslategray;
+    width: 70px;
+    height: 30px;
+}
+
+#hex, #color-picker {
+    border-color: black;
 }
 
 .color-modes {
@@ -46,17 +60,30 @@ body {
 
 .bottom-buttons {
     padding-top: 1%;
+    
+}
+
+.slider {
+    flex-grow: 1;
+    margin-left: 10%;
+    background-color: slategray;
 }
 
 .grid {
     background-color: white;
     border-style:solid;
     border-color: black;
-    height: 50%;
+    height: 500px;
+    width: 500px;
     display: grid;
     grid-template: repeat(16, auto) / repeat(16, auto);
 }
 
-.grid, .color-modes, .bottom-buttons {
-    width: 50%
+.color-modes, .bottom-buttons {
+    width: 500px;
+}
+
+.grid-container {
+    background: linear-gradient(45deg, #aaaaaa 0 50%, #75757b 50% 100%);
+    padding: 20px;
 }
