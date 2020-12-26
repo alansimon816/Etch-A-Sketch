@@ -6,6 +6,8 @@ const blackBtn = document.querySelector('#black-btn')
 const grayScaleBtn = document.querySelector('#grayscale-btn')
 const rainbowBtn = document.querySelector('#rainbow-btn')
 const eraseBtn = document.querySelector('#erase-btn')
+const hexInput = document.querySelector('#hex')
+const colorInput = document.querySelector('#color-picker')
 
 let colorMode
 
@@ -17,6 +19,8 @@ function setBtns () {
     grayScaleBtn.addEventListener('click', grayScale)
     rainbowBtn.addEventListener('click', rainbow)
     eraseBtn.addEventListener('click', erase)
+    hexInput.addEventListener('change', hex)
+    colorInput.addEventListener('click', picker)
     clearBtn.addEventListener('click', clearGrid)
 }
 
@@ -56,7 +60,20 @@ function color(e) {
         let count = +element.getAttribute("data-count")
         shadeIn(element, count)
     }
+    else if (colorMode == 'picker') {
+        let pickedColor = colorInput.value 
+        hexInput.value = pickedColor
+        element.setAttribute("style","background-color:" + pickedColor)
+    }
+    else if (colorMode == 'hex') {
+        let hexColor = hexInput.value
+        colorInput.value = hexColor
+        element.setAttribute("style","background-color:" + hexColor)
+    }
+       
 }
+
+
 
 /* This function assists the grayscale color mode by shading in a grid cell
    progressively darker each time the grid cell is hovered over by mouse. */
@@ -108,6 +125,16 @@ function rainbow() {
     colorMode = "rainbow"
 }
 
+// Sets colorMode to picker.
+function picker() {
+    colorMode = "picker"
+}
+
+// Sets colorMode to hex.
+function hex() {
+    colorMode = "hex"
+}
+
 // Clears all drawing from the grid.
 function clearGrid() {
     divs = document.querySelectorAll(".grid > div")
@@ -116,4 +143,6 @@ function clearGrid() {
         div.removeAttribute("data-count")
     })
 }
+
+
 

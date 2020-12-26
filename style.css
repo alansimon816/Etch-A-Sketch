@@ -13,8 +13,12 @@
     align-items: center;
 }
 
+.color-modes {
+    display: flex;
+    justify-content: space-between;
+}
+
 .grid {
-    color: red;
     height: 50%;
     display: grid;
     grid-template: repeat(16, auto) / repeat(16, auto);
