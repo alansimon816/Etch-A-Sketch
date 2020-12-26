@@ -10,7 +10,7 @@ const rangeInput = document.querySelector('#myRange')
 let colorMode
 
 createGridDivs()
-draw()
+setGridCellListeners()
 setBtns()
 
 // Attaches event listeners to buttons with appropriate callback functions
@@ -31,7 +31,7 @@ function adjustGridSize() {
     let v = rangeInput.value
     grid.style.gridTemplate = `repeat(${v}, auto) / repeat(${v}, auto)`
     createGridDivs()
-    draw()
+    setGridCellListeners()
 }
 
 /* Creates and places a div into each of the
@@ -65,7 +65,7 @@ function destroyGrid() {
 /* Adds an event listener for mouse hover event to each of the divs in the
    grid. Upon hover, the div will be colored according to the color mode
    that is enabled. */
-function draw() {
+function setGridCellListeners() {
     divs = document.querySelectorAll('.grid > div')
     divs.forEach(div => div.addEventListener('mouseover', color))
 }
@@ -75,7 +75,7 @@ function draw() {
 function color(e) {
     element = e.target
     let color = "black"
-    
+
     if (colorMode == 'grayScale') {
         let count = +element.getAttribute("data-count")
         shadeIn(element, count)
