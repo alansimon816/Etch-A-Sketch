@@ -1,4 +1,4 @@
-# Etch-A-Sketch
+# [Etch-A-Sketch](https://alansimon816.github.io/Etch-A-Sketch/)
 
 ![program screenshot](https://github.com/alansimon816/Etch-A-Sketch/blob/master/screenshot.png?raw=true)
 
